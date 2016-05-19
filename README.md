@@ -3,7 +3,7 @@ Easy to use .NET library to import/export data from fixed length, delimited reco
 
 Export data
 --------
-You have just to decorate your class's properties with attributes like the following example:
+You have just to decorate your properties of the class with attributes like the following example:
 ```csharp
 public class Person
 {
