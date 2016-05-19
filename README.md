@@ -137,7 +137,7 @@ and of course you can specify also different Model for the file (that should be 
 ```
 
 Finally a file like this will be importable:
-![alt tag](https://raw.github.com/liguori/RawORM/master/docs/fixedLenghtFullExample.png)
+![Full fixed lenght file example](https://raw.github.com/liguori/EasyDataFile/master/docs/fixedLenghtFullExample.png)
 
 
 TO DO
