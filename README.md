@@ -40,7 +40,7 @@ Finally you can export records on file in this way:
 var p1 = new Person { Name="Gianluigi", Surname="Liguori", Age=3, BirthDate = new DateTime(1990, 2, 1); };
 var p2 = new Person { Name="Vincenzo", Surname="Chianese", Age=3, BirthDate = new DateTime(1990, 2, 1); };
 
-var exp = new CsvExportProvider(@"C:\test.csv");
+var exp = new CsvExportProvider(@"C:\test.csv"); //Or use for Excel = new ExcelExportProvider(@"C:\test.xlsx");
 exp.WriteRecord(p1);
 exp.WriteRecord(p2);
 ```
