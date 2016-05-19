@@ -51,13 +51,13 @@ var lis = new List<Person>();
 //List initialization
 exp.WriteRecord(lis);
 ```
-or record of differents data type (whose properties must be decorated with ExportProvider attribute like in Person class)
+or record of differents data type (whose properties must be decorated with **ExportDefinition** attribute like in Person class)
 
 ```csharp
 var otherObjectOfDifferentType = new DifferentType();
 exp.WriteRecord(otherObjectOfDifferentType);
 ```
-and remember to close the file stream that is open automatically with the Export Provider constructor:
+and remember to close the file stream that is open automatically with the **ExportProvider** constructor:
 
 ```csharp
 exp.Close();
