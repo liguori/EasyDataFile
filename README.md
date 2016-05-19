@@ -103,7 +103,7 @@ Using attributes with previous class declaration we sayd that this class must co
 - There are 3 occurrences per every file line at position 1, 105 and 209
 - Due that this hypothetical file is composed of different structures this class contain record definition just for line of the file that contains 'C' as first character (because RecordType attribute)
 
-Finally we can start import with these lines:
+We can start import with these lines:
 ```csharp
 var c = new TextETL();
 c.AddModel(typeof(Car));
@@ -135,6 +135,9 @@ and of course you can specify also different Model for the file (that should be 
     c.AddModel(typeof(Sky));
     
 ```
+
+Finally a file like this will be importable:
+![alt tag](https://raw.github.com/liguori/RawORM/master/docs/fixedLenghtFullExample.png)
 
 
 TO DO
