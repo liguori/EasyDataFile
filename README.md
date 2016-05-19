@@ -41,8 +41,25 @@ var p1 = new Person { Name="Gianluigi", Surname="Liguori", Age=3, BirthDate = ne
 var p2 = new Person { Name="Vincenzo", Surname="Chianese", Age=3, BirthDate = new DateTime(1990, 2, 1); };
 
 var exp = new CsvExportProvider(@"C:\test.csv");
-exp.WriteRecordv
+exp.WriteRecord(p1);
 exp.WriteRecord(p2);
+```
+
+you can also write in output of the same file, collection of object of the same data type:
+```csharp
+var lis = new List<Person>();
+//List initialization
+exp.WriteRecord(lis);
+```
+or record of differents data type (whose properties must be decorated with ExportProvider attribute like in Person class)
+
+```csharp
+var otherObjectOfDifferentType = new DifferentType();
+exp.WriteRecord(otherObjectOfDifferentType);
+```
+and remember to close the file stream that is open automatically with the Export Provider constructor:
+
+```csharp
 exp.Close();
 ```
 
