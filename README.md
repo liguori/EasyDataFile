@@ -1,5 +1,5 @@
 # EasyDataFile
-Easy to use .NET library to import/export data from fixed length, delimited records or Excel files
+Easy to use .NET library to import/export data from fixed length, delimited records or Excel files in typed objects
 
 Export data
 --------
@@ -23,10 +23,10 @@ public class Person
 ```
 Parameters of **ExportDefinition** attribute are in order:
 
-- Order: Output order on a file
-- Header: Title of the field in output file (ex. in Excel or text first row)
-- ShowValueInHeader: Indicate if header (first row of the file or )  must contain the first value that appears in the relative column of the file
-- ShowHeaderOnce: Indicate if header must be only on the first record of file and not every data record or list of the same record's data type
+- *Order*: Output order on a file
+- *Header*: Title of the field in output file (ex. in Excel or text first row)
+- *ShowValueInHeader*: Indicate if header (first row of the file or )  must contain the first value that appears in the relative column of the file
+- *ShowHeaderOnce*: Indicate if header must be only on the first record of file and not every data record or list of the same record's data type
 
 By default are implemented 2 type of export that are:
 
@@ -65,6 +65,77 @@ exp.Close();
 
 Import data
 --------
+**IMPORT FIXED LENGHT FILE RECCORD**
+Here is a complete example that show you how to import a file with fixed lenght records 
+```csharp
+    [FixedLengthRecord()]
+    [MultipleInlineRecord(1, 25, 48)]
+    [RecordType(0, 1, "C", 71)]
+    public class Car
+    {
+        [FieldFixedLength(1,10,false)]
+        public string Menufacturer { get; set; }
+
+        [FieldFixedLength(11, 10, false)]
+        public string Name { get; set; }
+
+        [FieldFixedLength(21, 4, false)]
+        public int Age { get; set; }
+    }
+
+```
+Used attributes are:
+
+- **FixedLengthRecord**: Used for mark calss as container of the fixed lenght recod
+- **MultipleInlineRecord**: (optional) Used for indicate that the fixed record is repeated multiple times per every file line, and you should specify as argument an array of index that indicates the beginning of every single record ripetition into the same file line
+- **RecordType**: (optional) Sometimes files are composed of multiple definition of record per line that depends on a single value that record line assume, this attribute accept following parameters:
+    - *Start* index of the single value position into the file
+    - *Lenght* numbero of characters of the single value into the file
+    - *Value* value that should assume for activate the record definition
+    - *RecordLenght* the record structure lenght that this record type activate
+- **FieldFixedLength** must be indicated for every properties that should be filled with values from file. Arguments are:
+    - *Start*: index of the start position of the value into the file 
+    - *Lenght*: numbero of characters of the value from the start into the file
+    - *UseOffset*: indicate whether properties is inflfuenced by **MultipleInlineRecord** attribute
+
+Using attributes with previous class declaration we sayd that this class must contains records that:
+- Are Fixed Lenght
+- There are 3 occurrences per every file line at position 1, 105 and 209
+- Due that this hypothetical file is composed of different structures this class contain record definition just for line of the file that contains 'C' as first character (because RecordType attribute)
+
+Finally we can start import with these lines:
+```csharp
+var c = new TextETL();
+c.AddModel(typeof(Car));
+c.RecordReadyMethod = (currentRow, totalRows, record, ex) => { 
+    //Here your logic code to manage record object filled with values from file
+};
+c.Import(@"C:\fileToImport.txt");
+```
+
+and of course you can specify also different Model for the file (that should be activated making properly usage of **RecordType** attribute (as explained previously), for example:
+```csharp
+    [FixedLengthRecord()]
+    [RecordType(10, 5, "TABLE", 200)]
+    public class Table
+    {
+        //Properties definition
+    }
+    
+    [FixedLengthRecord()]
+    [RecordType(0, 3, "SKY", 100)]
+    public class Sky
+    {
+        //Properties definition
+    }
+
+
+    //And adding them to the import
+    c.AddModel(typeof(Table));
+    c.AddModel(typeof(Sky));
+    
+```
+
 
 TO DO
 --------
