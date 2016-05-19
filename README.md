@@ -65,7 +65,7 @@ exp.Close();
 
 Import data
 --------
-**IMPORT FIXED LENGHT FILE RECCORD**
+**IMPORT FIXED LENGHT FILE RECORD**
 
 Here is a complete example that show you how to import a file with fixed lenght records 
 ```csharp
@@ -87,7 +87,7 @@ Here is a complete example that show you how to import a file with fixed lenght 
 ```
 Used attributes are:
 
-- **FixedLengthRecord**: Used for mark calss as container of the fixed lenght recod
+- **FixedLengthRecord**: Used for mark class as container of the fixed lenght recod
 - **MultipleInlineRecord**: (optional) Used for indicate that the fixed record is repeated multiple times per every file line, and you should specify as argument an array of index that indicates the beginning of every single record ripetition into the same file line
 - **RecordType**: (optional) Sometimes files are composed of multiple definition of record per line that depends on a single value that record line assume, this attribute accept following parameters:
     - *Start* index of the single value position into the file
