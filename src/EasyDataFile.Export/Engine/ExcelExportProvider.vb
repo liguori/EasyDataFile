@@ -1,5 +1,4 @@
 ﻿Imports System.Text.RegularExpressions
-Imports ClosedXML.Excel
 Imports DocumentFormat.OpenXml
 Imports DocumentFormat.OpenXml.Office2010.ExcelAc
 Imports DocumentFormat.OpenXml.Packaging
@@ -75,20 +74,33 @@ Namespace Engine
             writer.WriteEndElement()
         End Sub
 
+
+        Function GetDataType(ByVal ele As Object) As String
+            If TypeOf ele Is Integer Or TypeOf ele Is Double Or TypeOf ele Is Long Then
+                Return "n"
+            Else
+                Return "str"
+            End If
+        End Function
+
         Public Sub ExcelRow(ParamArray elencovalori() As Object)
             Dim columnNum As Integer
             For columnNum = CurrentColumn To CurrentColumn + elencovalori.Count - 1
+                Dim value = elencovalori(columnNum - CurrentColumn)
+
                 'reset the list of attributes
                 attributes = New List(Of OpenXmlAttribute)
+
                 ' add data type attribute - in this case inline string (you might want to look at the shared strings table)
-                attributes.Add(New OpenXmlAttribute("t", Nothing, "str"))
+                attributes.Add(New OpenXmlAttribute("t", Nothing, GetDataType(value)))
+
                 'add the cell reference attribute
                 attributes.Add(New OpenXmlAttribute("r", "", String.Format("{0}{1}", GetColumnName(columnNum), CurrentRow)))
 
                 'write the cell start element with the type And reference attributes
                 writer.WriteStartElement(New Cell(), attributes)
                 'write the cell value
-                writer.WriteElement(New CellValue(Regex.Replace(elencovalori(columnNum - CurrentColumn), "[^\u0020-\u007E]", String.Empty)))
+                writer.WriteElement(New CellValue(Regex.Replace(value, "[^\u0020-\u007E]", String.Empty)))
 
                 'write the end cell element
                 writer.WriteEndElement()
