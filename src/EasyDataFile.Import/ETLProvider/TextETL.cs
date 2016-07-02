@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SmartETL.Attributes;
+using EasyDataFile.Import.Attributes;
 using System.IO;
 
-namespace SmartETL.ETLProvider
+namespace EasyDataFile.Import.ETLProvider
 {
     public class TextETL : IMultipleModelProviderETL
     {

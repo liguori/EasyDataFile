@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartETL.Attributes
+namespace EasyDataFile.Import.Attributes
 {
      [AttributeUsage(AttributeTargets.Class)]
     public class MultipleInlineRecordAttribute : Attribute

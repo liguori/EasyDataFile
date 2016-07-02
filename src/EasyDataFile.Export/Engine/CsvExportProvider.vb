@@ -15,6 +15,10 @@
             Return New CsvExportProvider(path)
         End Function
 
+        Public Overrides Sub RecordOpen()
+            'do nothing
+        End Sub
+
         Public Overrides Sub RecordClose()
             sw.Write(vbNewLine)
             sw.Flush()

@@ -1,13 +1,13 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using SmartETL.Attributes;
+using EasyDataFile.Import.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartETL.ETLProvider
+namespace EasyDataFile.Import.ETLProvider
 {
     public class ExcelXlsxETL : ISingleModelProviderETL
     {
@@ -185,15 +185,20 @@ namespace SmartETL.ETLProvider
         private Dictionary<Type, Func<string, object>> DefaultValueConverter()
         {
             return new Dictionary<Type, Func<string, object>> {
-            { typeof(Int16),  (v) => {return Int16.Parse(v);}},
-            { typeof(Int32),  (v) => {return Int32.Parse(v);}},
-            { typeof(Int64),  (v) => {return Int64.Parse(v);}},
-            { typeof(Double),  (v) => {return Double.Parse(v);}},
-            { typeof( Nullable<Int16>),  (v) => {return (string.IsNullOrWhiteSpace(v) ? null: new Nullable<Int16>(Int16.Parse(v)));}},
-            { typeof( Nullable<Int32>),  (v) => {return (string.IsNullOrWhiteSpace(v)? null: new Nullable<Int32>(Int32.Parse(v)));}},
-            { typeof( Nullable<Int64>),  (v) => {return (string.IsNullOrWhiteSpace(v)? null: new Nullable<Int64>(Int64.Parse(v)));}},
-            { typeof( Nullable<Double>),  (v) => {return (string.IsNullOrWhiteSpace(v)? null: new Nullable<Double>(Double.Parse(v)));}},
-            { typeof( Nullable<DateTime>),  (v) => {return (string.IsNullOrWhiteSpace(v) || string.IsNullOrWhiteSpace(v.Trim(' ','0')) ?
+            { typeof(short),  (v) => {return Int16.Parse(v);}},
+            { typeof(int),  (v) => {return Int32.Parse(v);}},
+            { typeof(long),  (v) => {return Int64.Parse(v);}},
+            { typeof(double),  (v) => {return Double.Parse(v);}},
+            { typeof(DateTime),  (v) => {return  (
+                                                  v.Contains("/")?
+                                                  DateTime.ParseExact(v, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture) :
+                                                  DateTime.FromOADate(double.Parse(v))
+                                                  );}},
+            { typeof( short?),  (v) => {return (string.IsNullOrWhiteSpace(v) ? null: new Nullable<Int16>(Int16.Parse(v)));}},
+            { typeof( int?),  (v) => {return (string.IsNullOrWhiteSpace(v)? null: new Nullable<Int32>(Int32.Parse(v)));}},
+            { typeof( long?),  (v) => {return (string.IsNullOrWhiteSpace(v)? null: new Nullable<Int64>(Int64.Parse(v)));}},
+            { typeof( double?),  (v) => {return (string.IsNullOrWhiteSpace(v)? null: new Nullable<Double>(Double.Parse(v)));}},
+            { typeof( DateTime?),  (v) => {return (string.IsNullOrWhiteSpace(v) || string.IsNullOrWhiteSpace(v.Trim(' ','0')) ?
                                                                 null:
                                                                 (
                                                                 v.Contains("/")?

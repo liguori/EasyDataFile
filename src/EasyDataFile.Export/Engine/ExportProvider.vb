@@ -18,6 +18,7 @@ Namespace Engine
         Public MustOverride Sub WriteField(str As Object)
         ''' <summary>Chiude e finalizza il report</summary>
         Public MustOverride Sub Close()
+        Public MustOverride Sub RecordOpen()
         Public MustOverride Sub RecordClose()
 
         ''' <summary>Verifica se le liste di proprietà fanno riferimento allo stesso ordine e stessa struttura </summary>
@@ -34,6 +35,7 @@ Namespace Engine
         ''' <summary>Finalizza un record scrivendo il buffer e la testata sul file</summary>
         Sub FinalizeRecord()
             If AutoPrintHeader And Not SameFieldList(DataBuffer(0), PreviousRecord) Then
+                RecordOpen()
                 For Each field In DataBuffer(0)
                     WriteField(If(field.DefinitionAttribute.ShowValueInHeader, field.Value, field.DefinitionAttribute.Header))
                 Next
@@ -43,6 +45,7 @@ Namespace Engine
             End If
 
             For Each ele In DataBuffer
+                RecordOpen()
                 For Each field In ele
                     WriteField(field.Value)
                 Next

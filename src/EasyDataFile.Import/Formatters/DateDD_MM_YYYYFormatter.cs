@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartETL.Formatters
+namespace EasyDataFile.Import.Formatters
 {
     public class DateDD_MM_YYYYFormatter : IFormatter
     {

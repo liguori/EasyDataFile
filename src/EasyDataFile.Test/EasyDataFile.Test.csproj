@@ -58,6 +58,10 @@
       <Project>{37252f74-cbfc-43c1-9add-34ab19d96038}</Project>
       <Name>EasyDataFile.Export</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EasyDataFile.Import\EasyDataFile.Import.csproj">
+      <Project>{47705082-c7d2-4ebb-ba95-e7a14a6a66c4}</Project>
+      <Name>EasyDataFile.Import</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

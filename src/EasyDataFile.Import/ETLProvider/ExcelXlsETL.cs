@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NExcel;
-using SmartETL.Attributes;
+using EasyDataFile.Import.Attributes;
 
-namespace SmartETL.ETLProvider
+namespace EasyDataFile.Import.ETLProvider
 {
     public class ExcelXlsETL : ISingleModelProviderETL
     {

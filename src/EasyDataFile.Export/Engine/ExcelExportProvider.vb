@@ -55,23 +55,24 @@ Namespace Engine
             document.Dispose()
         End Sub
 
-        Public Overrides Sub RecordClose()
-            CurrentRow += 1
-            CurrentColumn = 1
-        End Sub
-
-        Public Overrides Sub WriteField(str As Object)
+        Public Overrides Sub RecordOpen()
             'create a New list of attributes
             attributes = New List(Of OpenXmlAttribute)()
             'add the row index attribute to the list
             attributes.Add(New OpenXmlAttribute("r", Nothing, CurrentRow.ToString()))
             'write the row start element with the row index attribute
             writer.WriteStartElement(New Row(), attributes)
+        End Sub
 
-            ExcelRow(str)
-
+        Public Overrides Sub RecordClose()
             ' write the end row element
             writer.WriteEndElement()
+            CurrentRow += 1
+            CurrentColumn = 1
+        End Sub
+
+        Public Overrides Sub WriteField(str As Object)
+            ExcelRow(str)
         End Sub
 
 

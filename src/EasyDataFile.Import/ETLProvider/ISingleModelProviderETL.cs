@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartETL.ETLProvider
+namespace EasyDataFile.Import.ETLProvider
 {
     public interface ISingleModelProviderETL
     {
