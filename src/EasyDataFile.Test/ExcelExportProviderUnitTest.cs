@@ -50,7 +50,7 @@ namespace EasyDataFile.Test
             [ExportDefinition(10,"Cognome",false,true)]
             public string Surname { get; set; }
 
-            [NameField("DataNascita", typeof(DateWithSlashDDMMYYYFormatter))]
+            [NameField("DataNascita")]
             [ExportDefinition(10, "DataNascita", false, true)]
             public DateTime BirthDate { get; set; }
 
