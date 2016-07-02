@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/p6578vwg7rxp9g0w?svg=true)](https://ci.appveyor.com/project/liguori/easydatafile)
+
 # EasyDataFile
 Easy to use .NET library to import/export data from fixed length, delimited records or Excel files in typed objects
 
