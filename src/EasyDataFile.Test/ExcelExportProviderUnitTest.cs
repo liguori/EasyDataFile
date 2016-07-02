@@ -4,6 +4,7 @@ using EasyDataFile.Export.Engine;
 using EasyDataFile.Import.ETLProvider;
 using EasyDataFile.Import.Attributes;
 using System.IO;
+using EasyDataFile.Import.Formatters;
 
 namespace EasyDataFile.Test
 {
@@ -49,7 +50,7 @@ namespace EasyDataFile.Test
             [ExportDefinition(10,"Cognome",false,true)]
             public string Surname { get; set; }
 
-            [NameField("DataNascita")]
+            [NameField("DataNascita", typeof(DateWithSlashDDMMYYYFormatter))]
             [ExportDefinition(10, "DataNascita", false, true)]
             public DateTime BirthDate { get; set; }
 
@@ -60,5 +61,6 @@ namespace EasyDataFile.Test
                 }
             }
         }
+
     }
 }

@@ -59,9 +59,10 @@
     <Compile Include="Attributes\ValidateAttribute.cs" />
     <Compile Include="ETLProvider\IMultipleModelProviderETL.cs" />
     <Compile Include="ETLProvider\ISingleModelProviderETL.cs" />
+    <Compile Include="Formatters\DateWithSlashDDMMYYYFormatter.cs" />
     <Compile Include="Formatters\DefaultFormatter.cs" />
     <Compile Include="ETLProvider\ExcelXlsETL.cs" />
-    <Compile Include="Formatters\DateDD_MM_YYYYFormatter.cs" />
+    <Compile Include="Formatters\DateWithoutSlashFormatter.cs" />
     <Compile Include="Formatters\IFormatter.cs" />
     <Compile Include="ETLProvider\ExcelXlsxETL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

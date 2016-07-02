@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasyDataFile.Import.Formatters
 {
-    public class DateDD_MM_YYYYFormatter : IFormatter
+    public class DateWithoutSlashFormatter : IFormatter
     {
         public string Format(string val)
         {
