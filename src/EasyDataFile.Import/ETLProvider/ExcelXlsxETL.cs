@@ -191,7 +191,7 @@ namespace EasyDataFile.Import.ETLProvider
             { typeof(double),  (v) => {return Double.Parse(v);}},
             { typeof(DateTime),  (v) => {return  (
                                                   v.Contains("/")?
-                                                  DateTime.ParseExact(v, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture) :
+                                                  DateTime.ParseExact(v, "dd/MM/yyyy",new  System.Globalization.CultureInfo("it-IT")) :
                                                   DateTime.FromOADate(double.Parse(v))
                                                   );}},
             { typeof( short?),  (v) => {return (string.IsNullOrWhiteSpace(v) ? null: new Nullable<Int16>(Int16.Parse(v)));}},
@@ -202,7 +202,7 @@ namespace EasyDataFile.Import.ETLProvider
                                                                 null:
                                                                 (
                                                                 v.Contains("/")?
-                                                                new DateTime?(DateTime.ParseExact(v, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)) :
+                                                                new DateTime?(DateTime.ParseExact(v, "dd/MM/yyyy", new  System.Globalization.CultureInfo("it-IT"))) :
                                                                 new DateTime?(DateTime.FromOADate(double.Parse(v)))
                                                                 ));
                                                     }
