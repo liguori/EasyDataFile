@@ -31,6 +31,7 @@ namespace EasyDataFile.Test
             c.Model = typeof(Person);
             c.RecordReadyMethod = (currentRow, totalRows, record, ex) =>
               {
+                  if (ex != null) throw ex;
                   Assert.AreEqual(nameToWrite, ((Person)record).Name, ExpectedValuesNotFindedMessage);
                   Assert.AreEqual(surnameToWrite, ((Person)record).Surname, ExpectedValuesNotFindedMessage);
                   Assert.AreEqual(birthDateToWrtite, ((Person)record).BirthDate, ExpectedValuesNotFindedMessage);
